@@ -18,7 +18,7 @@ const $ = require('jquery');
       console.log('Here are all the movies:');
       $("span").html(" ");
       movies.map(({title, rating, id}) => {
-        $("#movie-list").append(`<div class="movie-wrap"><span class="movie-title">${title}</span><span class="star-all"><img src="images/star-${rating}.png"></span><button class="edit-this-movie" data-id="${id}" value="${id}">Edit</button></div>`);
+        $("#movie-list").append(`<div class="movie-wrap"><span class="movie-title">${title}</span><span class="star-all"><img src="images/star-${rating}.png"></span><button class="edit-this-movie" data-id="${id}" value="${id}">Edit</button><button class="delete-this-movie" id="delete-movie" data-id="${id}" value="${id}">delete</button></div>`);
       });
 
 /////////////////////////// Edit Movie
@@ -65,79 +65,45 @@ const $ = require('jquery');
         });
 
 /////////////////////////// Delete Movie
-        //TRY 1
-        // $("#delete-movie").submit(function(e) {
-        //     e.preventDefault();
-        //
-        //     const url = '/api/movies/${idToEdit}';
-        //     const options = {
-        //         method: 'DELETE',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //         },
-        //     };
-        //     fetch(url, options)
-        //         .then(getMovies);S
-        //     // $('#movie-title').val('');
-        //     // $('#movie-rating').val('');S
-        //     location.reload();
-        // });
+        $('.delete-this-movie').click(function() {
+            $(".modal2").css({"display":"block"})
+            idToEdit =  this.getAttribute('data-id');
+            getMovies().then((movies) => {
+                let movieUpdate = editThisMovie(movies);
+                $('#edit-title').val(movieUpdate[0].title);
+                $('#edit-rating').val(movieUpdate[0].rating);
+           });
+            function editThisMovie(movies){
+                let movieUpdate = movies.filter((movie) =>
+                    movie.id === parseFloat(idToEdit)
+                );
+                return movieUpdate;
+            }        });
 
-        /////TRY 2
-        // $("#delete-movie").click(function() {
-        //     event.preventDefault();
-        //     for (var i =0; i < movies.length; i++)
-        //
-        //     var getMovieId = movies[i].id;
-        //
-        //     console.log(getMovieId);
-            // if (getMovieId === idToEdit) {
-            //
-            //         movies.splice(i,1);
-                // break;
-            // }
-            // location.reload();
 
-        // });
-
-        ///TRY 3
-        // $("#delete-movie").click(function() {
-        //     event.preventDefault();
-        //     const index = movies.indexOf(idToEdit);
-        //     if (index !== -1){
-        //         movies.splice(index, 1);
-        //     }
-        // });
-
-        // try 4
-        // $("#delete-movie").click(futermi
-        //     event.preventDefault();
-        //     const index = movies.indexOf(idToEdit);
-        //     if (index !== -1){
-        //         movies.splice(index, 1);
-        //     }
-        // });
-
-        //TRY # DONT EVEN ASK
-
-        $('#delete-movie').click((e) => {
-            e.preventDefault();
-            let id = event.currentTarget.id.split('-');
-            deleteMovie(id[2]);
-            $('#movie-list' + id[2]).hide();
+        $("#delete-movie-yes").click(function() {
+            event.preventDefault();
+            let deletedMovie = {
+                title: $('#edit-title').val(),
+                rating: $('#edit-rating').val(),
+                id: $("#editMovieID").val()
+            };
+            const url = ('/api/movies/' + parseFloat(idToEdit));
+            // const url = ("/api/movies");
+            const options = {
+                method: 'delete',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(deletedMovie)
+            };
+            fetch(url, options)
+                .then(getMovies);
+            $('#edit-title').val("");
+            $('#edit-rating').val("");
+            $(".modal").css({"display":"none"})
             location.reload();
         });
-
-
-        function deleteMovie(id) {
-            const options = {
-                method: 'DELETE',
-            };
-            fetch(`/api/movies/${id}`, options)
-                .then(response => response.json())
-                .catch(error => console.log(error))
-
-        }
 
 
 /////////////////////////// Close Modal
@@ -146,10 +112,26 @@ const $ = require('jquery');
             $(".modal").css({"display":"none"})
         });
 
+
         let modal = document.getElementById('myModal');
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
+            }
+        }
+
+/////////////////// close delete
+        $('.close2').click(function() {
+            $(".modal2").css({"display":"none"})
+        });
+        $('#delete-movie-no').click(function() {
+            $(".modal2").css({"display":"none"})
+        });
+
+        let modal2 = document.getElementById('myModal2');
+        window.onclick = function(event) {
+            if (event.target == modal2) {
+                modal2.style.display = "none";
             }
         }
 
