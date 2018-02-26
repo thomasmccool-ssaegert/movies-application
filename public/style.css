@@ -3,9 +3,14 @@ html, body {
     font-family: Avenir, sans-serif;
     margin: 0;
     padding: 0 0 5% 0;
-    background-color: #f3f3f3;
+    /*background-color: #f3f3f3;*/
+    background-image: url("images/movies-bg.jpg");
+    background-size: cover;
+    font-size: 16px;
 }
-
+header img {
+    width: 100%;
+}
 .container {
     /*position: relative;*/
     /*top: 50%;*/
@@ -75,8 +80,9 @@ html, body {
     border-bottom: 1px solid #ddd;
     clear: both;
     width: 98%;
-    height: 2em;
     font-size: 1.5em;
+    height: 2em;
+
 }
 #movie-form {
     margin-top: 3em;
@@ -87,10 +93,10 @@ html, body {
 }
 .star-all {
     background-repeat: no-repeat;
-    margin-left: 1em;
-    margin-right: 1em;
-    width: 100px;
     object-fit: scale-down;
+    float: left;
+    width: 25%;
+    text-align: left;
 }
 .main-title {
     font-size: 5em;
@@ -128,7 +134,9 @@ html, body {
 }
 .edit-this-movie,
 .delete-this-movie {
-    width: 7em;
+    width: 8%;
+    height: 2em;
+    float: left;
     background-color: darkblue;
     color: #fff;
     font-size: .5em;
@@ -136,24 +144,30 @@ html, body {
     margin-left: 2em;
 }
 input {
-    width: 8em;
-    font-size: 1.5em;
+    width: 20vw;
+    height: 6vh;
+    font-size: .5em;
     border-color: #999;
     border-radius: 1em;
     margin-right: 1em;
     padding-left: .5em;
 }
 label {
-    font-size: 2em;
+    font-size: 2vw;
     font-weight: bold;
 
 }
 select {
     font-size: 1em;
 }
-.movie-title {
-    font-size: 1.2em;
+.movie-title{
+    font-size: 2vw;
     font-weight: bold;
+    float: left;
+    width: 45%;
+    margin-left: 3%;
+    text-align: left;
+    color: darkblue;
 }
 #movie-list {
     margin: 0;
@@ -166,4 +180,28 @@ select {
 #delete-header {
     font-size: 1.5em;
     height: 1em;
+}
+#movie-form {
+    float: left;
+    margin-left: 4%;
+    margin-right: 4%;
+    border: 1px solid black;
+    padding: 1em;
+    border-radius: .5em;
+}
+.form-title {
+    font-size: 3vw;
+    font-weight: bold;
+    text-align: left;
+    color: darkblue;
+    padding: 0;
+    margin: 0 0 .2em 0;
+}
+
+@media screen and (max-width: 550px) {
+    body {
+        background-image: url("../img/header-bg-2.jpg");
+        background-repeat: repeat-x;
+        background-size: auto 7em;
+    }
 }

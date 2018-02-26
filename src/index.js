@@ -18,7 +18,7 @@ const $ = require('jquery');
       console.log('Here are all the movies:');
       $("span").html(" ");
       movies.map(({title, rating, id}) => {
-        $("#movie-list").append(`<div class="movie-wrap"><span class="movie-title">${title}</span><span class="star-all"><img src="images/star-${rating}.png"></span><button class="edit-this-movie" data-id="${id}" value="${id}">Edit</button><button class="delete-this-movie" id="delete-movie" data-id="${id}" value="${id}">delete</button></div>`);
+        $("#movie-list").append(`<div class="movie-wrap"><div class="movie-title">${title}</div><div class="star-all"><img src="images/star-${rating}.png"></div><button class="edit-this-movie" data-id="${id}" value="${id}">Edit</button><button class="delete-this-movie" id="delete-movie" data-id="${id}" value="${id}">delete</button></div>`);
       });
 
 /////////////////////////// Edit Movie

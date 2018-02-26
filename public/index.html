@@ -2,15 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My Application</title>
     <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+<header><img src="images/movies-header.jpg" alt=""></header>
     <div class="container">
-        <h1 class="main-title">- MOVIES! -</h1>
+        <!--<h1 class="main-title">- MOVIES! -</h1>-->
         <!--<p>To get started, edit <code>src/index.js</code>.</p>-->
-        <span id="movie-list"><img src="images/loading-anim.gif" alt=""></span>
+        <span id="movie-list"><img src="images/loading.gif" alt="" style="clear: both"></span>
         <form id="movie-form">
+        <h3 class="form-title">Add A Movie</h3>
             <label for="movie-title">Movie Title
             <input type="text" name="movie-title" id="movie-title" ></label>
             <label for="movie-rating">Rate this movie
