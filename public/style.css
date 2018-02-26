@@ -3,6 +3,7 @@ html, body {
     font-family: Avenir, sans-serif;
     margin: 0;
     padding: 0 0 5% 0;
+    background-color: #f3f3f3;
 }
 
 .container {
@@ -162,3 +163,7 @@ select {
 /*.update-buttons {*/
     /*margin-top: 1em;*/
 /*}*/
+#delete-header {
+    font-size: 1.5em;
+    height: 1em;
+}

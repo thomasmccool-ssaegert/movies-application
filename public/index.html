@@ -9,7 +9,7 @@
     <div class="container">
         <h1 class="main-title">- MOVIES! -</h1>
         <!--<p>To get started, edit <code>src/index.js</code>.</p>-->
-        <span id="movie-list">Loading...</span>
+        <span id="movie-list"><img src="images/loading-anim.gif" alt=""></span>
         <form id="movie-form">
             <label for="movie-title">Movie Title
             <input type="text" name="movie-title" id="movie-title" ></label>
@@ -29,10 +29,10 @@
         <div class="modal-content">
                 <div class="close">X</div>
             <form>
-                <label for="edit-title">Edit the Movie's Title:
+                <label for="edit-title">Edit Title:
                     <input id="edit-title" type="text">
                 </label>
-                <label for="edit-rating">Edit the Movie's Rating:
+                <label for="edit-rating">Edit Rating:
                     <select type="select" name="movie-rating" id="edit-rating" >
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -53,6 +53,7 @@
             <div id="myModal2" class="modal2">
 
                 <div class="modal-content">
+                    <div id="delete-header"></div>
                     <div class="close2">X</div>
 
 

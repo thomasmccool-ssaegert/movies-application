@@ -66,7 +66,7 @@ const $ = require('jquery');
 
 /////////////////////////// Delete Movie
         $('.delete-this-movie').click(function() {
-            $(".modal2").css({"display":"block"})
+            $(".modal2").css({"display":"block"});
             idToEdit =  this.getAttribute('data-id');
             getMovies().then((movies) => {
                 let movieUpdate = editThisMovie(movies);
@@ -77,6 +77,8 @@ const $ = require('jquery');
                 let movieUpdate = movies.filter((movie) =>
                     movie.id === parseFloat(idToEdit)
                 );
+
+                $("#delete-header").append(`Are you sure you want to delete <strong>${movieUpdate[0].title}</strong>`);
                 return movieUpdate;
             }        });
 
@@ -123,14 +125,17 @@ const $ = require('jquery');
 /////////////////// close delete
         $('.close2').click(function() {
             $(".modal2").css({"display":"none"})
+            $("#delete-header").html("");
         });
         $('#delete-movie-no').click(function() {
             $(".modal2").css({"display":"none"})
+            $("#delete-header").html("");
         });
 
         let modal2 = document.getElementById('myModal2');
         window.onclick = function(event) {
             if (event.target == modal2) {
+            $("#delete-header").html("");
                 modal2.style.display = "none";
             }
         }
